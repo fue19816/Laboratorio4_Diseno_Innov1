@@ -1,5 +1,5 @@
-#ifndef COUNTER_H
-#define COUNTER_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,12 +21,13 @@ extern "C" {
 // ====================================================================================================
 typedef struct
 {
-    unsigned char led1;  /**<Led1 for counter */
-    unsigned char led2; /**<Led2 for counter */
-    unsigned char led3;  /**<Led3 for counter */
-    unsigned char led4; /**<Led4 for counter*/
-} contador_t;
-
+    uint8_t pin;
+    unsigned char actualizacion;         // Lectura actual
+    unsigned char boton_estadoA;         // Ultima lectura realizada
+    unsigned char estado;                // Estado actual del boton
+    unsigned char last_debounce_time;    // utlimot tiempo en el que se tardó para obtener el valor
+    unsigned char debounce_delay;        // delay
+} button_t;
 
 // ====================================================================================================
 // Public function definitions
@@ -34,12 +35,12 @@ typedef struct
 /**
  * @brief Initializes a counter structure.
  * 
- * @param[in, out] c_self   Points to the counter's data structure.
- * @param[in] l1           Counter led 1.        
- * @param[in] l2          Counter led 2.
- * @param[in] l3          Counter led 3.
- * @param[in] l4           Counter led 4.
+ * @param[in, out] Boton  Points to the button data structure.
+ * @param[in] last_debounce_time               
+ * @param[in] debounce_time          
  */
+
+// esto no estoy segura de que hace 
 static inline void init_boton(button_t * Boton)
 {
     pinMode(Boton->pin, INPUT);
