@@ -1,39 +1,27 @@
-#include "room.h"
+#include "counter.h"
 
 // ====================================================================================================
 // Private variables
 // ====================================================================================================
-static double temp = 0;
+static int leds[4];
 
 // ====================================================================================================
 // Private functions
 // ====================================================================================================
-static double
-calculate_area(double len, double brth)
-{
-    temp = len * brth;
-    return temp;
-}
-
-
-static double
-calculate_volume(double len, double brth, double hgt)
-{
-    return len * brth * hgt;
-}
 
 
 // ====================================================================================================
 // Public function definitions
 // ====================================================================================================
-double
-room_calculate_area(room_t * p_self)
+void
+mostrar_contador(contadorled_t * p_self, int numero)
 {
-    return calculate_area(p_self->length, p_self->breadth);
-}
-
-double
-room_calculate_volume(room_t * p_self)
-{
-    return calculate_volume(p_self->length, p_self->breadth, p_self->height);
+   for (int i = 0; i < 5; i++)
+   {
+    leds[i] = bitRead(numero,i);
+   }
+   digitalWritte(p_self->led1,leds[0]);
+   digitalWritte(p_self->led2,leds[1]);
+   digitalWritte(p_self->led3,leds[2]);
+   digitalWritte(p_self->led4,leds[3]);
 }
